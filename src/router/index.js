@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import Heroes from '../views/Heroes.vue'
+import Details from '../views/HeroeDetail.vue'
 import NotFound from '../views/NotFound.vue'
 
 Vue.use(VueRouter)
@@ -15,7 +16,14 @@ const routes = [
   {
     path: '/heroes',
     name: 'heroes',
-    component: Heroes
+    component: Heroes,
+    
+  },
+  {
+    path: '/heroe/:index',
+    name: 'details',
+    component: Details,
+    props: true,
   },
   {
     path: '*',

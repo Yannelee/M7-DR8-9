@@ -1,9 +1,6 @@
 <template>
  <div class="principal d-flex flex-column align-center">
-    <v-card
-    class="d-flex flex-column align-center my-10 mx-10"
-    dark
-    >
+    <v-card class="d-flex flex-column align-center my-10 mx-10" dark>
       <v-list-item three-line>
         <v-list-item-content>
           <v-list-item-title class="text-h4 mb-1">Desafía las expectativas de los MOBA</v-list-item-title>
@@ -15,11 +12,7 @@
       </v-card-actions>
     </v-card>
     
-    <v-alert
-      border="left"
-      color="purple darken-1"
-      dark
-    >
+    <v-alert border="left" color="purple darken-1" dark>
       ¡Te damos la bienvenida al Nexo! ¡En este reino entre reinos, todo es posible! Eige entre decenas de héroes legendarios de todo el panteón de Blizzard, personaliza sus talentos y habilidades en medio del combate y lucha en una infinidad de campos de batalla que redefinen el género. ¡Esto no es un MOBA promedio, esto es Heroes of the Storm!
     </v-alert>
   </div>

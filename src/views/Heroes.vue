@@ -1,7 +1,8 @@
 <template>
   <div class="heroes">
-    <div class="test"></div>
+    <div class="blur"></div>
     <div class="content">
+      <!-- ICONS -->
       <div class="titleIcons mx-8 mb-5">
         <h1 class="title">Héroes</h1>
         <v-icon color="grey lighten-3" class="mr-3">mdi-shield-half-full</v-icon>
@@ -11,52 +12,53 @@
         <v-icon color="grey lighten-3" class="mr-3">mdi-arch</v-icon>
         <v-icon color="grey lighten-3" class="mr-3">mdi-hand-back-right</v-icon>
       </div>
-
-      <v-simple-table dark class="mx-5 overflow-auto mt-8">
+      <!-- TABLE -->
+      <v-simple-table dark class="overflow-auto my-8">
         <template v-slot:default>
           <thead>
             <tr>
-              <th class="text-left">Heroe</th>
-              <th class="text-left">Nombre</th>
-              <th class="text-left">Funcion</th>
-              <th class="text-left">Titulo</th>
-              <th class="text-left">Ataque</th>
+              <th class="text-center" width="500px">Héroe</th>
+              <th class="text-center" width="500px">Detalles</th>
             </tr>
           </thead>
           <tbody>
-            <tr
-              v-for="heroe in heroes"
-              :key="heroe.nombre"
-            >
-              <td>
-                <v-img
-                  lazy-src="https://picsum.photos/id/11/10/6"
-                  max-height="150"
-                  max-width="250"
-                  :src="heroe.img"
-                ></v-img>
+            <tr v-for="(heroe, index) in heroes" :key="index">
+              <td class="text-center">
+                <v-avatar size="x-large" class="my-3">
+                  <v-img lazy-src="https://picsum.photos/id/11/10/6" max-height="200" max-width="200" :src="heroe.img"></v-img>
+                </v-avatar>
               </td>
-              <td>{{ heroe.nombre }}</td>
-              <td>{{ heroe.funcion }}</td>
-              <td>{{ heroe.titulo }}</td>
-              <td>{{ heroe.ataque }}</td>
+              <td class="px-10"><Login :heroeName="index"/></td>
             </tr>
           </tbody>
         </template>
       </v-simple-table>
-
     </div>
+    
   </div>
 </template>
 
 <script>
-import { mapState } from "vuex";
+import Login from '@/components/Login.vue';
+import { mapState, mapActions } from "vuex";
+
 export default {
   name:'heroes-comp',
-  computed:{
-    ...mapState(['heroes'])
+  components: {
+    Login
   },
-
+  data: () => ({
+    dialog: false,
+  }),
+  computed:{
+    ...mapState(['heroes', 'heroe'])
+  },
+  methods:{
+    ...mapActions(['getHeroes']),
+  },
+  created(){
+    this.getHeroes()
+  },
 }
 </script>
 
@@ -65,7 +67,7 @@ export default {
     position: relative;
     margin: auto;
   }
-  .test{
+  .blur{
     background: url("@/assets/background2.jpg") center top;
     background-size: 100%;
     filter: blur(.4rem);
@@ -77,7 +79,6 @@ export default {
   }
   .content{
     position: relative;
-
   }
   .titleIcons{
     align-self:initial !important;
